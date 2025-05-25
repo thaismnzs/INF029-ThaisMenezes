@@ -25,6 +25,7 @@
 #include "ThaisMenezes20242160013.h" // Substitua pelo seu arquivo de header renomeado
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 DataQuebrada quebraData(char data[]) {
     DataQuebrada dq;
@@ -228,12 +229,13 @@ DiasMesesAnos q2(char datainicial[], char datafinal[]){
     DataQuebrada ini = quebraData(datainicial);
     DataQuebrada fim = quebraData(datafinal);
     
-     if ((ini.iAno > fim.iAno) ||
-        (ini.iAno == fim.iAno && ini.iMes > fim.iMes) ||
-        (ini.iAno == fim.iAno && ini.iMes == fim.iMes && ini.iDia > fim.iDia)) {
-        dma.retorno = 4;
-        return dma;
-    }
+   
+    if ((ini.iAno > fim.iAno) ||
+    (ini.iAno == fim.iAno && ini.iMes > fim.iMes) ||
+    (ini.iAno == fim.iAno && ini.iMes == fim.iMes && ini.iDia > fim.iDia)) {
+    dma.retorno = 4;
+    return dma;
+}
     int difDia = fim.iDia - ini.iDia;
     int difMes = fim.iMes - ini.iMes;
     int difAno = fim.iAno - ini.iAno;
@@ -307,33 +309,85 @@ int q3(char *texto, char c, int isCaseSensitive){
         O retorno da função, n, nesse caso seria 1;
 
  */
-int q4(const char *strTexto, const char *strBusca, int posicoes[]) {
-    int ocorrencias = 0;
-    int tamTexto = strlen(strTexto);
-    int tamBusca = strlen(strBusca);
+ void removerAcentos(char *texto) {
+    const char *acentos[] = {
+        "Ä", "Å", "Á", "Â", "À", "Ã", "ä", "á", "â", "à", "ã",
+        "É", "Ê", "Ë", "È", "é", "ê", "ë", "è",
+        "Í", "Î", "Ï", "Ì", "í", "î", "ï", "ì",
+        "Ö", "Ó", "Ô", "Ò", "Õ", "ö", "ó", "ô", "ò", "õ",
+        "Ü", "Ú", "Û", "ü", "ú", "û", "ù",
+        "Ç", "ç"
+    };
     
-    if (tamBusca == 0 || tamBusca > tamTexto) {
-        return 0;
-    }
+    const char *semAcento[] = {
+        "A", "A", "A", "A", "A", "A", "a", "a", "a", "a", "a",
+        "E", "E", "E", "E", "e", "e", "e", "e",
+        "I", "I", "I", "I", "i", "i", "i", "i",
+        "O", "O", "O", "O", "O", "o", "o", "o", "o", "o",
+        "U", "U", "U", "u", "u", "u", "u",
+        "C", "c"
+    };
+
+    char temp[256] = {0};
+    int index = 0;
     
-    for (int i = 0; i <= tamTexto - tamBusca; i++) {
-        int encontrou = 1;
+    for (int i = 0; texto[i] != '\0'; ) {
+        int substituido = 0;
         
-        for (int j = 0; j < tamBusca; j++) {
-            if (strTexto[i + j] != strBusca[j]) {
-                encontrou = 0;
+        for (int k = 0; k < (int)(sizeof(acentos) / sizeof(acentos[0])); k++) {
+            int tamanho = strlen(acentos[k]);
+            
+            if (strncmp(&texto[i], acentos[k], tamanho) == 0) {
+                int lenSub = strlen(semAcento[k]);
+                for (int c = 0; c < lenSub; c++) {
+                    temp[index++] = semAcento[k][c];
+                }
+                i += tamanho;
+                substituido = 1;
                 break;
             }
         }
         
-        if (encontrou) {
-            posicoes[ocorrencias * 2] = i + 1;        
-            posicoes[ocorrencias * 2 + 1] = i + tamBusca; 
-            ocorrencias++;
+        if (!substituido) {
+            temp[index++] = texto[i++];
         }
     }
-    
-    return ocorrencias;
+    temp[index] = '\0';
+    strcpy(texto, temp);
+}
+
+int q4(char *strTexto, char *strBusca, int posicoes[30]) {
+    int qtdOcorrencias = 0;
+    int indicePos = 0;
+    int tamanhoBusca = strlen(strBusca);
+
+    removerAcentos(strTexto);
+    removerAcentos(strBusca);
+
+    for (int i = 0; i < (int)strlen(strTexto); ) {
+        int achou = 1;
+
+        if (strTexto[i] == strBusca[0]) {
+            for (int j = 0; j < tamanhoBusca; j++) {
+                if (strTexto[i + j] != strBusca[j]) {
+                    achou = 0;
+                    break;
+                }
+            }
+
+            if (achou) {
+                qtdOcorrencias++;
+                posicoes[indicePos++] = i + 1;             
+                posicoes[indicePos++] = i + tamanhoBusca; 
+                i += tamanhoBusca;
+               
+            }
+        }
+
+        i++;
+    }
+
+    return qtdOcorrencias;
 }
 
 /*
@@ -354,13 +408,6 @@ int q5(int num) {
         num /= 10;
     }
     return num_invertido;
-}
-
-int main() {
-    int num = 190;
-    
-    q5(num);
-    printf("%d", q5(num));
 }
 
 /*
@@ -413,10 +460,10 @@ int q7(char matriz[8][10], char palavra[5]) {
     int colunas = 10;
     
     int direcoes[8][2] = {
-        {-1, 0}, {1, 0},
-        {0, -1}, {0, 1},  
-        {-1, -1}, {-1, 1},
-        {1, -1}, {1, 1}
+        {-1, 0}, {1, 0},  
+        {0, -1}, {0, 1},    
+        {-1, -1}, {-1, 1},   
+        {1, -1}, {1, 1}    
     };
     
     for(i = 0; i < linhas; i++) {
@@ -424,19 +471,24 @@ int q7(char matriz[8][10], char palavra[5]) {
             if(matriz[i][j] == palavra[0]) {
                 for(k = 0; k < 8; k++) {
                     int ni = i, nj = j;
+                    int encontrou = 1;
                     
                     for(l = 1; l < tam; l++) {
                         ni += direcoes[k][0];
-                        nj += direcoes[k][i];
+                        nj += direcoes[k][1];
                         
-                        if(ni < 0 || ni >= linhas || nj < 0 || nj >= colunas)
-                        break;
+                        if(ni < 0 || ni >= linhas || nj < 0 || nj >= colunas) {
+                            encontrou = 0;
+                            break;
+                        }
                         
-                        if(matriz[ni][nj] != palavra[l]) 
-                        break;
+                        if(matriz[ni][nj] != palavra[l]) {
+                            encontrou = 0;
+                            break;
+                        }
                     }
                     
-                    if (l == tam) {
+                    if(encontrou) {
                         return 1;
                     }
                 }
@@ -445,22 +497,3 @@ int q7(char matriz[8][10], char palavra[5]) {
     }
     return 0;
 }
-
-
-
-
-	int j = i + 1; //anda 1 cada para pular a barra
-	i = 0;
-
-	for (; data[j] != '/'; j++){
-		sMes[i] = data[j];
-		i++;
-	}
-
-	if(i == 1 || i == 2){ // testa se tem 1 ou dois digitos
-		sMes[i] = '\0';  // coloca o barra zero no final
-	}else {
-		dq.valido = 0;
-    return dq;
-  }
-	
