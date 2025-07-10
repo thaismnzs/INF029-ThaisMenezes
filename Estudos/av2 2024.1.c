@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+//QUESTAO 1
+void alocaEspaco(int **p, int num) {
+   *p = (int*)malloc(num*sizeof(int));
+}
 
+int main(){
+int *p;
+int num;
+scanf("%d", &num);
+
+alocaEspaco(&p, num);
+}
+
+//QUESTAO 2
 typedef struct reg {
     int valor;
     struct reg *proximo;
