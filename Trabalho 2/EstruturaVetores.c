@@ -9,14 +9,14 @@
 EstruturaAuxiliar *vetorPrincipal[TAM];
 
 /*
-Objetivo: criar estrutura auxiliar na posição 'posicao'.
+Objetivo: criar estrutura auxiliar na posiï¿½ï¿½o 'posicao'.
 com tamanho 'tamanho'
 
 Rertono (int)
     SUCESSO - criado com sucesso
-    JA_TEM_ESTRUTURA_AUXILIAR - já tem estrutura na posição
-    POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
-    SEM_ESPACO_DE_MEMORIA - Sem espaço de memória
+    JA_TEM_ESTRUTURA_AUXILIAR - jï¿½ tem estrutura na posiï¿½ï¿½o
+    POSICAO_INVALIDA - Posiï¿½ï¿½o invï¿½lida para estrutura auxiliar
+    SEM_ESPACO_DE_MEMORIA - Sem espaï¿½o de memï¿½ria
     TAMANHO_INVALIDO - o tamanho deve ser maior ou igual a 1
 */
 int criarEstruturaAuxiliar(int posicao, int tamanho)
@@ -53,12 +53,12 @@ int criarEstruturaAuxiliar(int posicao, int tamanho)
 }
 
 /*
-Objetivo: inserir número 'valor' em estrutura auxiliar da posição 'posicao'
+Objetivo: inserir nï¿½mero 'valor' em estrutura auxiliar da posiï¿½ï¿½o 'posicao'
 Rertono (int)
     SUCESSO - inserido com sucesso
-    SEM_ESPACO - não tem espaço
-    SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
-    POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
+    SEM_ESPACO - nï¿½o tem espaï¿½o
+    SEM_ESTRUTURA_AUXILIAR - Nï¿½o tem estrutura auxiliar
+    POSICAO_INVALIDA - Posiï¿½ï¿½o invï¿½lida para estrutura auxiliar
 CONSTANTES
 */
 int inserirNumeroEmEstrutura(int posicao, int valor)
@@ -68,7 +68,7 @@ int inserirNumeroEmEstrutura(int posicao, int valor)
 
     EstruturaAuxiliar *estrutura = vetorPrincipal[posicao-1];
 
-    if(estrutura == NULL) {
+    if(estrutura == NULL)
         return SEM_ESTRUTURA_AUXILIAR;
 
     
@@ -83,14 +83,14 @@ int inserirNumeroEmEstrutura(int posicao, int valor)
 
 /*
 Objetivo: excluir o numero 'valor' da estrutura auxiliar no final da estrutura.
-ex: suponha os valores [3, 8, 7, 9,  ,  ]. Após excluir, a estrutura deve ficar da seguinte forma [3, 8, 7,  ,  ,  ].
-Obs. Esta é uma exclusão lógica
+ex: suponha os valores [3, 8, 7, 9,  ,  ]. Apï¿½s excluir, a estrutura deve ficar da seguinte forma [3, 8, 7,  ,  ,  ].
+Obs. Esta ï¿½ uma exclusï¿½o lï¿½gica
 
 Rertono (int)
     SUCESSO - excluido com sucesso
     ESTRUTURA_AUXILIAR_VAZIA - estrutura vazia
-    SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
-    POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
+    SEM_ESTRUTURA_AUXILIAR - Nï¿½o tem estrutura auxiliar
+    POSICAO_INVALIDA - Posiï¿½ï¿½o invï¿½lida para estrutura auxiliar
 */
 int excluirNumeroDoFinaldaEstrutura(int posicao)
 {
@@ -99,7 +99,7 @@ int excluirNumeroDoFinaldaEstrutura(int posicao)
 
      EstruturaAuxiliar *estrutura = vetorPrincipal[posicao-1];
 
-    if(estrutura == NULL) {
+    if(estrutura == NULL)
         return SEM_ESTRUTURA_AUXILIAR;
 
     if(estrutura->qtd == 0)
@@ -110,16 +110,16 @@ int excluirNumeroDoFinaldaEstrutura(int posicao)
 }
 
 /*
-Objetivo: excluir o numero 'valor' da estrutura auxiliar da posição 'posicao'.
-Caso seja excluido, os números posteriores devem ser movidos para as posições anteriores
+Objetivo: excluir o numero 'valor' da estrutura auxiliar da posiï¿½ï¿½o 'posicao'.
+Caso seja excluido, os nï¿½meros posteriores devem ser movidos para as posiï¿½ï¿½es anteriores
 ex: suponha os valores [3, 8, 7, 9,  ,  ] onde deve ser excluido o valor 8. A estrutura deve ficar da seguinte forma [3, 7, 9,  ,  ,  ]
-Obs. Esta é uma exclusão lógica
+Obs. Esta ï¿½ uma exclusï¿½o lï¿½gica
 Rertono (int)
-    SUCESSO - excluido com sucesso 'valor' da estrutura na posição 'posicao'
+    SUCESSO - excluido com sucesso 'valor' da estrutura na posiï¿½ï¿½o 'posicao'
     ESTRUTURA_AUXILIAR_VAZIA - estrutura vazia
-    SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
-    NUMERO_INEXISTENTE - Número não existe
-    POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
+    SEM_ESTRUTURA_AUXILIAR - Nï¿½o tem estrutura auxiliar
+    NUMERO_INEXISTENTE - Nï¿½mero nï¿½o existe
+    POSICAO_INVALIDA - Posiï¿½ï¿½o invï¿½lida para estrutura auxiliar
 
 */
 int excluirNumeroEspecificoDeEstrutura(int posicao, int valor)
@@ -130,7 +130,7 @@ int excluirNumeroEspecificoDeEstrutura(int posicao, int valor)
 
      EstruturaAuxiliar *estrutura = vetorPrincipal[posicao-1];
 
-    if(estrutura == NULL) {
+    if(estrutura == NULL)
         return SEM_ESTRUTURA_AUXILIAR;
 
         if(estrutura->qtd == 0)
@@ -157,13 +157,13 @@ int excluirNumeroEspecificoDeEstrutura(int posicao, int valor)
     return SUCESSO;
 }
 /*
-Objetivo: retorna os números da estrutura auxiliar da posição 'posicao (1..10)'.
-os números devem ser armazenados em vetorAux
+Objetivo: retorna os nï¿½meros da estrutura auxiliar da posiï¿½ï¿½o 'posicao (1..10)'.
+os nï¿½meros devem ser armazenados em vetorAux
 
 Retorno (int)
-    SUCESSO - recuperado com sucesso os valores da estrutura na posição 'posicao'
-    SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
-    POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
+    SUCESSO - recuperado com sucesso os valores da estrutura na posiï¿½ï¿½o 'posicao'
+    SEM_ESTRUTURA_AUXILIAR - Nï¿½o tem estrutura auxiliar
+    POSICAO_INVALIDA - Posiï¿½ï¿½o invï¿½lida para estrutura auxiliar
 */
 int getDadosEstruturaAuxiliar(int posicao, int vetorAux[])
 {
@@ -184,13 +184,13 @@ int getDadosEstruturaAuxiliar(int posicao, int vetorAux[])
 }
 
 /*
-Objetivo: retorna os números ordenados da estrutura auxiliar da posição 'posicao (1..10)'.
-os números devem ser armazenados em vetorAux
+Objetivo: retorna os nï¿½meros ordenados da estrutura auxiliar da posiï¿½ï¿½o 'posicao (1..10)'.
+os nï¿½meros devem ser armazenados em vetorAux
 
 Rertono (int)
-    SUCESSO - recuperado com sucesso os valores da estrutura na posição 'posicao (1..10)'
-    SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
-    POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
+    SUCESSO - recuperado com sucesso os valores da estrutura na posiï¿½ï¿½o 'posicao (1..10)'
+    SEM_ESTRUTURA_AUXILIAR - Nï¿½o tem estrutura auxiliar
+    POSICAO_INVALIDA - Posiï¿½ï¿½o invï¿½lida para estrutura auxiliar
 */
 
 int comparar(const void *a, const void *b) {
@@ -216,12 +216,12 @@ int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[])
     return SUCESSO;
 }
 /*
-Objetivo: retorna os números de todas as estruturas auxiliares.
-os números devem ser armazenados em vetorAux
+Objetivo: retorna os nï¿½meros de todas as estruturas auxiliares.
+os nï¿½meros devem ser armazenados em vetorAux
 
 Rertono (int)
-    SUCESSO - recuperado com sucesso os valores da estrutura na posição 'posicao'
-    TODAS_ESTRUTURAS_AUXILIARES_VAZIAS - todas as estruturas auxiliares estão vazias
+    SUCESSO - recuperado com sucesso os valores da estrutura na posiï¿½ï¿½o 'posicao'
+    TODAS_ESTRUTURAS_AUXILIARES_VAZIAS - todas as estruturas auxiliares estï¿½o vazias
 */
 int getDadosDeTodasEstruturasAuxiliares(int vetorAux[])
 {
@@ -244,12 +244,12 @@ int getDadosDeTodasEstruturasAuxiliares(int vetorAux[])
 }
 
 /*
-Objetivo: retorna os números ordenados de todas as estruturas auxiliares.
-os números devem ser armazenados em vetorAux
+Objetivo: retorna os nï¿½meros ordenados de todas as estruturas auxiliares.
+os nï¿½meros devem ser armazenados em vetorAux
 
 Rertono (int)
-    SUCESSO - recuperado com sucesso os valores da estrutura na posição 'posicao'
-    TODAS_ESTRUTURAS_AUXILIARES_VAZIAS - todas as estruturas auxiliares estão vazias
+    SUCESSO - recuperado com sucesso os valores da estrutura na posiï¿½ï¿½o 'posicao'
+    TODAS_ESTRUTURAS_AUXILIARES_VAZIAS - todas as estruturas auxiliares estï¿½o vazias
 */
 int getDadosOrdenadosDeTodasEstruturasAuxiliares(int vetorAux[])
 {
@@ -277,15 +277,15 @@ int getDadosOrdenadosDeTodasEstruturasAuxiliares(int vetorAux[])
 }
 
 /*
-Objetivo: modificar o tamanho da estrutura auxiliar da posição 'posicao' para o novo tamanho 'novoTamanho' + tamanho atual
+Objetivo: modificar o tamanho da estrutura auxiliar da posiï¿½ï¿½o 'posicao' para o novo tamanho 'novoTamanho' + tamanho atual
 Suponha o tamanho inicial = x, e novo tamanho = n. O tamanho resultante deve ser x + n. Sendo que x + n deve ser sempre >= 1
 
 Rertono (int)
     SUCESSO - foi modificado corretamente o tamanho da estrutura auxiliar
-    SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
-    POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
-    NOVO_TAMANHO_INVALIDO - novo tamanho não pode ser negativo
-    SEM_ESPACO_DE_MEMORIA - erro na alocação do novo valor
+    SEM_ESTRUTURA_AUXILIAR - Nï¿½o tem estrutura auxiliar
+    POSICAO_INVALIDA - Posiï¿½ï¿½o invï¿½lida para estrutura auxiliar
+    NOVO_TAMANHO_INVALIDO - novo tamanho nï¿½o pode ser negativo
+    SEM_ESPACO_DE_MEMORIA - erro na alocaï¿½ï¿½o do novo valor
 */
 int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho)
 {
@@ -317,13 +317,13 @@ int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho)
 }
 
 /*
-Objetivo: retorna a quantidade de elementos preenchidos da estrutura auxiliar da posição 'posicao'.
+Objetivo: retorna a quantidade de elementos preenchidos da estrutura auxiliar da posiï¿½ï¿½o 'posicao'.
 
 Retorno (int)
-    POSICAO_INVALIDA - posição inválida
+    POSICAO_INVALIDA - posiï¿½ï¿½o invï¿½lida
     SEM_ESTRUTURA_AUXILIAR - sem estrutura auxiliar
     ESTRUTURA_AUXILIAR_VAZIA - estrutura auxiliar vazia
-    Um número int > 0 correpondente a quantidade de elementos preenchidos da estrutura
+    Um nï¿½mero int > 0 correpondente a quantidade de elementos preenchidos da estrutura
 */
 int getQuantidadeElementosEstruturaAuxiliar(int posicao)
 {
@@ -342,11 +342,11 @@ int getQuantidadeElementosEstruturaAuxiliar(int posicao)
 }
 
 /*
-Objetivo: montar a lista encadeada com cabeçote com todos os números presentes em todas as estruturas.
+Objetivo: montar a lista encadeada com cabeï¿½ote com todos os nï¿½meros presentes em todas as estruturas.
 
 Retorno (No*)
-    NULL, caso não tenha nenhum número nas listas
-    No*, ponteiro para o início da lista com cabeçote
+    NULL, caso nï¿½o tenha nenhum nï¿½mero nas listas
+    No*, ponteiro para o inï¿½cio da lista com cabeï¿½ote
 */
 No *montarListaEncadeadaComCabecote()
 {
@@ -381,22 +381,22 @@ No *montarListaEncadeadaComCabecote()
 }
 
 /*
-Objetivo: retorna os números da lista enceada com cabeçote armazenando em vetorAux.
+Objetivo: retorna os nï¿½meros da lista enceada com cabeï¿½ote armazenando em vetorAux.
 Retorno void
 */
 void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[])
 {
-  No *atual = inicio->prox;
+  No *atual = inicio->proximo;
     int i = 0;
 
     while (atual != NULL) {
         vetorAux[i++] = atual->valor;
-        atual = atual->prox;
+        atual = atual->proximo;
     }
 }
 
 /*
-Objetivo: Destruir a lista encadeada com cabeçote a partir de início.
+Objetivo: Destruir a lista encadeada com cabeï¿½ote a partir de inï¿½cio.
 O ponteiro inicio deve ficar com NULL.
 
 Retorno 
@@ -430,7 +430,7 @@ void inicializar()
 
 /*
 Objetivo: finaliza o programa. deve ser chamado ao final do programa 
-para poder liberar todos os espaços de memória das estruturas auxiliares.
+para poder liberar todos os espaï¿½os de memï¿½ria das estruturas auxiliares.
 
 */
 
